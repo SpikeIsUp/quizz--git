@@ -8,14 +8,8 @@ import (
 )
 
 func homeHandler(w http.ResponseWriter, r *http.Request) {
-		if r.URL.Path != "/" {
-			http.NotFound(w, r)
-			return
-		}
-		if err := controller.RenderTemplate(w, "menu.html"); err != nil {
-			http.Error(w, err.Error(), http.StatusInternalServerError)
-		}
-	}
+	
+}
 
 func cyberHandler(w http.ResponseWriter, r *http.Request) {
 	controller.Cyber(w, r)
