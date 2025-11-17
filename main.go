@@ -1,14 +1,15 @@
 package main
 
 import (
-	"net/http"
 	"fmt"
 	"log"
+	"net/http"
+
 	"github.com/SpikelsUp/quizz--git/controller"
 )
 
 func homeHandler(w http.ResponseWriter, r *http.Request) {
-	
+	http.ServeFile(w, r, "template/menu.html")
 }
 
 func cyberHandler(w http.ResponseWriter, r *http.Request) {
@@ -28,14 +29,12 @@ func main() {
 
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 
+
+	
 	http.HandleFunc("/", homeHandler)
 	http.HandleFunc("/cyber", cyberHandler)
 	http.HandleFunc("/IAdata", IAdataHandler)
 	http.HandleFunc("/info", infoHandler)
-
-	http.HandleFunc("/healthz", func(w http.ResponseWriter, r *http.Request) {
-		_, _ = w.Write([]byte("ok"))
-	})
 
 	addr := ":8080"
 	fmt.Printf("✅ Serveur lancé sur http://localhost%v\n", addr)
