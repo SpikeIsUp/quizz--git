@@ -1,13 +1,42 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Quizz Info</title>
-</head>
-<body>
-     <div class="/">
-        <li onclick="window.location.href='/'">Menu</li>
+    <link rel="stylesheet" href="../static/CSS/info.css" />
+    <script src="/game/quizinfo/info-quiz.js" defer></script>
+  </head>
+  <body>
+    <!-- Bouton pour revenir au menu -->
+    <div id="menu-btn" onclick="window.location.href='/'">⬅ Retour Menu</div>
+
+    <div id="game-container">
+      <h1 class="title">QUIZZ INFO — MODE ARCADE</h1>
+
+      <div id="hud">
+        <div class="hud-item">
+          <span class="label">Temps</span>
+          <div id="timer">30</div>
+        </div>
+        <div class="hud-item">
+          <span class="label">Score</span>
+          <div id="score">0</div>
+        </div>
+        <div class="hud-item">
+          <span class="label">Record</span>
+          <div id="best-score">0</div>
+        </div>
+      </div>
+
+      <div id="question"></div>
+      <div id="answers"></div>
+
+      <div id="game-over" class="hidden">
+        <h2 id="final-score"></h2>
+        <p id="record-msg"></p>
+        <button id="replay-btn">Rejouer</button>
+      </div>
     </div>
-</body>
+  </body>
 </html>

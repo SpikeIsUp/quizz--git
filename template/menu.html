@@ -1,25 +1,103 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu</title>
-</head>
-<body>
-    <div classe="btn">
-    <button class="btn-menu" onclick="location.href='/'">
-          menu
-    </button>
-    <button class=" btn-cyber" onclick="location.href='/cyber'">
-          cyber
-    </button>
-    <button class=" btn-IAdata" onclick="location.href='/IAdata'">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Menu - Quiz Arcade</title>
+    <link rel="stylesheet" href="../static/CSS/menu.css" />
+    <!-- Tu peux ajouter un autre CSS spécial menu si tu veux, ex :
+  <link rel="stylesheet" href="/static/css/menu.css">
+  --></head>
+  <body>
+    <!-- Barre de menu en haut -->
+    <header class="top-menu">
+      <div class="btn-group">
+        <button class="btn-menu" onclick="location.href='/'">Menu</button>
+        <button class="btn-cyber" onclick="location.href='/cyber'">
+          Cyber
+        </button>
+        <button class="btn-IAdata" onclick="location.href='/IAdata'">
           IA Data
-    </button>
-    <button class=" btn-info" onclick="location.href='/info'">
-          info
-    </button>
-    </div>
-    
-</body>
+        </button>
+        <button class="btn-info" onclick="location.href='/info'">Info</button>
+      </div>
+    </header>
+
+    <!-- Écran d’accueil arcade -->
+    <main class="centered">
+      <h1 class="neon">Quiz Arcade</h1>
+      <p class="sub">
+        Un quiz fun, animé et électronique — réponds vite et gagne des points !
+      </p>
+      <div class="controls">
+        <a href="../template/info.html" class="btn">Démarrer</a>
+        <button id="leaderboardBtn" class="btn ghost">
+          Voir le classement
+        </button>
+      </div>
+      <div id="leaderboard" class="panel hidden"></div>
+    </main>
+
+    <script>
+      async function showLeaderboard() {
+        const res = await fetch("/data/scores.json").catch(() => null);
+        const panel = document.getElementById("leaderboard");
+        if (!res) {
+          panel.innerText = "Impossible de charger le classement.";
+          panel.classList.remove("hidden");
+          return;
+        }
+        const data = await res.json();
+        if (!data.length) {
+          panel.innerHTML = "<p>Aucun score enregistré.</p>";
+          panel.classList.remove("hidden");
+          return;
+        }
+        data.sort((a, b) => b.score - a.score);
+        panel.innerHTML =
+          "<h3>Classement</h3>" +
+          data
+            .slice(0, 10)
+            .map(
+              (s) => `<div class="score-row">${s.name} — ${s.score} pts</div>`
+            )
+            .join("");
+        panel.classList.remove("hidden");
+      }
+      document.getElementById("leaderboardBtn").onclick = showLeaderboard;
+    </script>
+
+    <style>
+      /* Un peu de style pour la barre de menu, compatible avec ton style.css */
+      .top-menu {
+        padding: 12px 16px;
+        display: flex;
+        justify-content: center;
+      }
+      .btn-group {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .btn-menu,
+      .btn-cyber,
+      .btn-IAdata,
+      .btn-info {
+        padding: 8px 14px;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+        font-weight: 600;
+        background: rgba(255, 255, 255, 0.04);
+        color: #dfe9ff;
+        backdrop-filter: blur(4px);
+      }
+      .btn-menu:hover,
+      .btn-cyber:hover,
+      .btn-IAdata:hover,
+      .btn-info:hover {
+        background: rgba(255, 255, 255, 0.12);
+      }
+    </style>
+  </body>
 </html>
