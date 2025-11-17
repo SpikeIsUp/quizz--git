@@ -4,10 +4,130 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quizz IA et Data</title>
+    <link rel="stylesheet" href="/static/css/IAdata.css">
 </head>
 <body>
      <div class="/">
         <li onclick="window.location.href='/'">Menu</li>
     </div>
+    <div class="terminal-container">
+        <div class="terminal-header">
+            <span class="terminal-title">█ CYBER_QUIZ.EXE - IA/DATA PROTOCOL █</span>
+            <div class="terminal-controls">
+                <span class="control">━</span>
+                <span class="control">□</span>
+                <span class="control">✕</span>
+            </div>
+        </div>
+
+        <!-- ÉCRAN DE CHARGEMENT -->
+        <div id="loading-screen" class="screen active">
+            <div class="ascii-art">
+                <pre>
+    ▄████▄ ▓██   ██▓ ▄▄▄▄   ▓█████  ██▀███  
+   ▒██▀ ▀█  ▒██  ██▒▓█████▄ ▓█   ▀ ▓██ ▒ ██▒
+   ▒▓█    ▄  ▒██ ██░▒██▒ ▄██▒███   ▓██ ░▄█ ▒
+   ▒▓▓▄ ▄██▒ ░ ▐██▓░▒██░█▀  ▒▓█  ▄ ▒██▀▀█▄  
+   ▒ ▓███▀ ░ ░ ██▒▓░░▓█  ▀█▓░▒████▒░██▓ ▒██▒
+   ░ ░▒ ▒  ░  ██▒▒▒ ░▒▓███▀▒░░ ▒░ ░░ ▒▓ ░▒▓░
+     ░  ▒   ▓██ ░▒░ ▒░▒   ░  ░ ░  ░  ░▒ ░ ▒░
+   ░        ▒ ▒ ░░   ░    ░    ░     ░░   ░ 
+   ░ ░      ░ ░      ░         ░  ░   ░     
+                </pre>
+            </div>
+            <div class="loading-text">
+                <p>> INITIALISATION DU SYSTÈME...</p>
+                <p>> CHARGEMENT DES PROTOCOLES DE SÉCURITÉ...</p>
+                <p>> CONNEXION AU SERVEUR ÉTABLIE</p>
+                <p class="blink">> APPUYEZ SUR [ENTRÉE] POUR CONTINUER_</p>
+            </div>
+        </div>
+
+        <!-- PRÉ-TEST -->
+        <div id="pretest-screen" class="screen">
+            <div class="terminal-content">
+                <h1 class="glitch" data-text="⚠ PROTOCOLE DE VÉRIFICATION ⚠">⚠ PROTOCOLE DE VÉRIFICATION ⚠</h1>
+                <p class="warning-text">> ATTENTION: Vous devez identifier correctement les 3 médias</p>
+                <p class="warning-text">> Réussite requise: 3/3</p>
+                <p class="info-text">> Ce pré-test vérifie votre capacité à distinguer le contenu généré par IA</p>
+                
+                <div id="pretest-counter" class="counter">
+                    <span>Question: <span id="pretest-current">1</span>/3</span>
+                    <span>Réussis: <span id="pretest-score">0</span>/3</span>
+                </div>
+
+                <div id="pretest-question" class="question-container">
+                    <div class="media-container">
+                        <img id="pretest-media" src="" alt="Test média">
+                    </div>
+                    <div class="pretest-buttons">
+                        <button class="terminal-btn btn-ai" onclick="answerPreTest(true)">
+                            <span class="btn-icon">🤖</span> IA GÉNÉRÉ
+                        </button>
+                        <button class="terminal-btn btn-real" onclick="answerPreTest(false)">
+                            <span class="btn-icon">👤</span> RÉEL / NON-IA
+                        </button>
+                    </div>
+                </div>
+
+                <div id="pretest-feedback" class="feedback hidden"></div>
+            </div>
+        </div>
+
+        <!-- QUIZ PRINCIPAL -->
+        <div id="quiz-screen" class="screen">
+            <div class="terminal-content">
+                <h1 class="glitch" data-text="◉ QUIZ IA/DATA - NIVEAU EXPERT ◉">◉ QUIZ IA/DATA - NIVEAU EXPERT ◉</h1>
+                
+                <div id="quiz-counter" class="counter">
+                    <span>Question: <span id="quiz-current">1</span>/20</span>
+                    <span>Score: <span id="quiz-score">0</span>/20</span>
+                    <span>Type: <span id="quiz-type" class="type-badge">IA</span></span>
+                </div>
+
+                <div id="quiz-question" class="question-container">
+                    <h2 id="question-text" class="question-text"></h2>
+                    <div id="options-container" class="options-container"></div>
+                </div>
+
+                <div id="quiz-feedback" class="feedback hidden"></div>
+            </div>
+        </div>
+
+        <!-- ÉCRAN DE RÉSULTATS -->
+        <div id="results-screen" class="screen">
+            <div class="terminal-content">
+                <h1 class="glitch" data-text="◉ RÉSULTATS FINAUX ◉">◉ RÉSULTATS FINAUX ◉</h1>
+                
+                <div class="results-box">
+                    <div class="result-line">
+                        <span class="result-label">> SCORE TOTAL:</span>
+                        <span id="final-score" class="result-value">0/20</span>
+                    </div>
+                    <div class="result-line">
+                        <span class="result-label">> POURCENTAGE:</span>
+                        <span id="final-percentage" class="result-value">0%</span>
+                    </div>
+                    <div class="result-line">
+                        <span class="result-label">> NIVEAU:</span>
+                        <span id="final-level" class="result-value level-badge"></span>
+                    </div>
+                    
+                    <div id="level-message" class="level-message"></div>
+                </div>
+
+                <div class="results-actions">
+                    <button class="terminal-btn" onclick="restartQuiz()">
+                        🔄 RECOMMENCER
+                    </button>
+                    <button class="terminal-btn" onclick="window.location.href='/'">
+                        🏠 MENU PRINCIPAL
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/quiz.js"></script>
 </body>
 </html>
