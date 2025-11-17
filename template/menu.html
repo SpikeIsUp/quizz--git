@@ -1,25 +1,44 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Orientation Quizz</title>
+
+    <!-- Favicon (à adapter si besoin) -->
+    <link rel="icon" type="image/png" href="/static/image/logo-head.png" />
+
+    <!-- Feuille de style -->
+    <link rel="stylesheet" href="/static/css/menu.css" />
 </head>
 <body>
-    <div classe="btn">
-    <button class="btn-menu" onclick="location.href='/'">
-          menu
-    </button>
-    <button class=" btn-cyber" onclick="location.href='/cyber'">
-          cyber
-    </button>
-    <button class=" btn-IAdata" onclick="location.href='/IAdata'">
-          IA Data
-    </button>
-    <button class=" btn-info" onclick="location.href='/info'">
-          info
-    </button>
-    </div>
-    
+    <header>
+        <button class="btn-menu" onclick="location.href='/'">
+            Menu
+        </button>
+    </header>
+
+    <main>
+        <section class="panel">
+            <h1 class="panel-title">Orientation en informatique</h1>
+            <p class="panel-subtitle">
+                Choisis un domaine pour commencer ton quizz d’orientation.
+            </p>
+
+            <div class="btn-group">
+                <button class="btn-choice btn-cyber" onclick="location.href='/cyber'">
+                    Cyber sécurité
+                </button>
+
+                <button class="btn-choice btn-IAdata" onclick="location.href='/IAdata'">
+                    IA & Data
+                </button>
+
+                <button class="btn-choice btn-info" onclick="location.href='/info'">
+                    Informatique générale
+                </button>
+            </div>
+        </section>
+    </main>
 </body>
 </html>
