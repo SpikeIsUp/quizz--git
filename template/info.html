@@ -1,42 +1,102 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Quizz Info</title>
-    <link rel="stylesheet" href="../static/CSS/info.css" />
-    <script src="/game/quizinfo/info-quiz.js" defer></script>
-  </head>
-  <body>
-    <!-- Bouton pour revenir au menu -->
-    <div id="menu-btn" onclick="window.location.href='/'">⬅ Retour Menu</div>
-
-    <div id="game-container">
-      <h1 class="title">QUIZZ INFO — MODE ARCADE</h1>
-
-      <div id="hud">
-        <div class="hud-item">
-          <span class="label">Temps</span>
-          <div id="timer">30</div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Informatique Générale</title>
+    <link rel="stylesheet" href="/static/CSS/info.css">
+</head>
+<body>
+    <div class="terminal-container">
+        <div class="terminal-header">
+            <span class="terminal-title">█ INFO_GENERAL.EXE █</span>
+            <div class="terminal-controls">
+                <span class="control">━</span>
+                <span class="control">□</span>
+                <span class="control" onclick="window.location.href='/'">✕</span>
+            </div>
         </div>
-        <div class="hud-item">
-          <span class="label">Score</span>
-          <div id="score">0</div>
-        </div>
-        <div class="hud-item">
-          <span class="label">Record</span>
-          <div id="best-score">0</div>
-        </div>
-      </div>
 
-      <div id="question"></div>
-      <div id="answers"></div>
+        <!-- ÉCRAN DE CHARGEMENT -->
+        <div id="loading-screen" class="screen active">
+            <div class="ascii-art">
+                <pre>
+    ██▓ ███▄    █   █████▒▒█████  
+   ▓██▒ ██ ▀█   █ ▓██   ▒▒██▒  ██▒
+   ▒██▒▓██  ▀█ ██▒▒████ ░▒██░  ██▒
+   ░██░▓██▒  ▐▌██▒░▓█▒  ░▒██   ██░
+   ░██░▒██░   ▓██░░▒█░   ░ ████▓▒░
+                </pre>
+            </div>
+            <div class="loading-text">
+                <p>> INITIALISATION DU SYSTÈME...</p>
+                <p>> CHARGEMENT DES MODULES...</p>
+                <p>> CONNEXION ÉTABLIE</p>
+                <p class="blink">> APPUYEZ SUR [ENTRÉE] POUR CONTINUER_</p>
+            </div>
+        </div>
 
-      <div id="game-over" class="hidden">
-        <h2 id="final-score"></h2>
-        <p id="record-msg"></p>
-        <button id="replay-btn">Rejouer</button>
-      </div>
+        <!-- QUIZ -->
+        <div id="quiz-screen" class="screen">
+            <div class="terminal-content">
+                <h1 class="glitch" data-text="◉ QUIZ INFORMATIQUE GÉNÉRALE ◉">◉ QUIZ INFORMATIQUE GÉNÉRALE ◉</h1>
+                
+                <div id="quiz-counter" class="counter">
+                    <span>Question: <span id="quiz-current">1</span>/20</span>
+                    <span>Score: <span id="quiz-score">0</span>/20</span>
+                </div>
+
+                <div id="quiz-question" class="question-container">
+                    <h2 id="question-text" class="question-text"></h2>
+                    <div id="options-container" class="options-container"></div>
+                </div>
+
+                <div id="quiz-feedback" class="feedback hidden"></div>
+                
+                <div class="keyboard-hint">
+                    Navigation: <kbd>1</kbd> <kbd>2</kbd> <kbd>3</kbd> <kbd>4</kbd> ou <kbd>↑</kbd> <kbd>↓</kbd> + <kbd>Entrée</kbd>
+                </div>
+            </div>
+        </div>
+
+        <!-- RÉSULTATS -->
+        <div id="results-screen" class="screen">
+            <div class="terminal-content">
+                <h1 class="glitch" data-text="◉ RÉSULTATS FINAUX ◉">◉ RÉSULTATS FINAUX ◉</h1>
+                
+                <div class="results-box">
+                    <div class="result-line">
+                        <span class="result-label">> SCORE TOTAL:</span>
+                        <span id="final-score" class="result-value">0/20</span>
+                    </div>
+                    <div class="result-line">
+                        <span class="result-label">> POURCENTAGE:</span>
+                        <span id="final-percentage" class="result-value">0%</span>
+                    </div>
+                    <div class="result-line">
+                        <span class="result-label">> NIVEAU:</span>
+                        <span id="final-level" class="result-value level-badge"></span>
+                    </div>
+                    
+                    <div id="level-message" class="level-message"></div>
+                </div>
+
+                <div class="results-actions">
+                    <button class="terminal-btn" onclick="restartQuiz()">
+                        🔄 RECOMMENCER
+                    </button>
+                    <button class="terminal-btn" onclick="window.location.href='/'">
+                        🏠 MENU PRINCIPAL
+                    </button>
+                </div>
+                
+                <div class="keyboard-hint">
+                    <kbd>R</kbd> Recommencer | <kbd>M</kbd> Menu
+                </div>
+            </div>
+        </div>
     </div>
-  </body>
+
+    <script src="/static/js/quiz-info.js"></script>
+</body>
 </html>

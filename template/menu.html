@@ -1,45 +1,63 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Orientation Quizz</title>
-
-    <!-- Favicon (à adapter si besoin) -->
-    <link rel="icon" type="image/png" href="/static/image/logo-head.png" />
-
-    <!-- Feuille de style -->
-    <link rel="stylesheet" href="/static/css/menu.css" />
-  </head>
-  <body>
-    <header>
-      <button class="btn-menu" onclick="location.href='/'">Menu</button>
-    </header>
-
-    <main>
-      <section class="panel">
-        <h1 class="panel-title">Orientation en informatique</h1>
-        <p class="panel-subtitle">
-          Choisis un domaine pour commencer ton quizz d’orientation.
-        </p>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orientation Quizz - Menu</title>
+    <link rel="stylesheet" href="/static/CSS/menu.css">
+</head>
+<body>
+    <div class="panel">
+        <h1 class="panel-title">ORIENTATION INFORMATIQUE</h1>
+        <p class="panel-subtitle">Choisis un domaine pour commencer ton quiz</p>
 
         <div class="btn-group">
-          <button class="btn-choice btn-cyber" onclick="location.href='/cyber'">
-            Cyber sécurité
-          </button>
-
-          <button
-            class="btn-choice btn-IAdata"
-            onclick="location.href='/IAdata'"
-          >
-            IA & Data
-          </button>
-
-          <button class="btn-choice btn-info" onclick="location.href='/info'">
-            Informatique générale
-          </button>
+            <button class="btn-choice btn-cyber" data-index="0" onclick="location.href='/cyber.html'">
+                Cybersécurité
+            </button>
+            <button class="btn-choice btn-IAdata" data-index="1" onclick="location.href='/IAdata.html'">
+                IA & Data
+            </button>
+            <button class="btn-choice btn-info" data-index="2" onclick="location.href='/info.html'">
+                Informatique Générale
+            </button>
         </div>
-      </section>
-    </main>
-  </body>
+
+        <div class="keyboard-hint">
+            Navigation: <kbd>↑</kbd> <kbd>↓</kbd> | Sélection: <kbd>Entrée</kbd>
+        </div>
+    </div>
+
+    <script>
+        let selectedIndex = 0;
+        const buttons = document.querySelectorAll('.btn-choice');
+        
+        function updateSelection() {
+            buttons.forEach((btn, i) => {
+                if (i === selectedIndex) {
+                    btn.classList.add('selected');
+                } else {
+                    btn.classList.remove('selected');
+                }
+            });
+        }
+        
+        updateSelection();
+        
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                selectedIndex = (selectedIndex - 1 + buttons.length) % buttons.length;
+                updateSelection();
+            } else if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                selectedIndex = (selectedIndex + 1) % buttons.length;
+                updateSelection();
+            } else if (e.key === 'Enter') {
+                e.preventDefault();
+                buttons[selectedIndex].click();
+            }
+        });
+    </script>
+</body>
 </html>

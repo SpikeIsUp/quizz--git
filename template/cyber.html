@@ -3,11 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quizz Cyber</title>
+    <title>Quiz Cybersécurité</title>
+    <link rel="stylesheet" href="/static/CSS/cyber.css">
 </head>
 <body>
-     <div class="/">
-        <li onclick="window.location.href='/'">Menu</li>
+    <div class="terminal-container">
+        <div class="terminal-header">
+            <span class="terminal-title">█ CYBER_SECURITY.EXE █</span>
+            <div class="terminal-controls">
+                <span class="control">━</span>
+                <span class="control">□</span>
+                <span class="control" onclick="window.location.href='/'">✕</span>
+            </div>
+        </div>
+
+        <!-- ÉCRAN DE CHARGEMENT -->
+        <div id="loading-screen" class="screen active">
+            <div class="ascii-art">
+                <pre>
+    ▄████▄ ▓██   ██▓ ▄▄▄▄   ▓█████  ██▀███  
+   ▒██▀ ▀█  ▒██  ██▒▓█████▄ ▓█   ▀ ▓██ ▒ ██▒
+   ▒▓█    ▄  ▒██ ██░▒██▒ ▄██▒███   ▓██ ░▄█ ▒
+   ▒▓▓▄ ▄██▒ ░ ▐██▓░▒██░█▀  ▒▓█  ▄ ▒██▀▀█▄  
+   ▒ ▓███▀ ░ ░ ██▒▓░░▓█  ▀█▓░▒████▒░██▓ ▒██▒
+   ░ ░▒ ▒  ░  ██▒▒▒ ░▒▓███▀▒░░ ▒░ ░░ ▒▓ ░▒▓░
+     ░  ▒   ▓██ ░▒░ ▒░▒   ░  ░ ░  ░  ░▒ ░ ▒░
+   ░        ▒ ▒ ░░   ░    ░    ░     ░░   ░ 
+   ░ ░      ░ ░      ░         ░  ░   ░     
+                </pre>
+            </div>
+            <div class="loading-text">
+                <p>> INITIALISATION DU SYSTÈME...</p>
+                <p>> CHARGEMENT DES PROTOCOLES DE SÉCURITÉ...</p>
+                <p>> CONNEXION SÉCURISÉE ÉTABLIE</p>
+                <p class="blink">> APPUYEZ SUR [ENTRÉE] POUR CONTINUER_</p>
+            </div>
+        </div>
+
+        <!-- QUIZ -->
+        <div id="quiz-screen" class="screen">
+            <div class="terminal-content">
+                <h1 class="glitch" data-text="◉ QUIZ CYBERSÉCURITÉ ◉">◉ QUIZ CYBERSÉCURITÉ ◉</h1>
+                
+                <div id="quiz-counter" class="counter">
+                    <span>Question: <span id="quiz-current">1</span>/20</span>
+                    <span>Score: <span id="quiz-score">0</span>/20</span>
+                </div>
+
+                <div id="quiz-question" class="question-container">
+                    <h2 id="question-text" class="question-text"></h2>
+                    <div id="options-container" class="options-container"></div>
+                </div>
+
+                <div id="quiz-feedback" class="feedback hidden"></div>
+                
+                <div class="keyboard-hint">
+                    Navigation: <kbd>1</kbd> <kbd>2</kbd> <kbd>3</kbd> <kbd>4</kbd> ou <kbd>↑</kbd> <kbd>↓</kbd> + <kbd>Entrée</kbd>
+                </div>
+            </div>
+        </div>
+
+        <!-- RÉSULTATS -->
+        <div id="results-screen" class="screen">
+            <div class="terminal-content">
+                <h1 class="glitch" data-text="◉ RÉSULTATS FINAUX ◉">◉ RÉSULTATS FINAUX ◉</h1>
+                
+                <div class="results-box">
+                    <div class="result-line">
+                        <span class="result-label">> SCORE TOTAL:</span>
+                        <span id="final-score" class="result-value">0/20</span>
+                    </div>
+                    <div class="result-line">
+                        <span class="result-label">> POURCENTAGE:</span>
+                        <span id="final-percentage" class="result-value">0%</span>
+                    </div>
+                    <div class="result-line">
+                        <span class="result-label">> NIVEAU:</span>
+                        <span id="final-level" class="result-value level-badge"></span>
+                    </div>
+                    
+                    <div id="level-message" class="level-message"></div>
+                </div>
+
+                <div class="results-actions">
+                    <button class="terminal-btn" onclick="restartQuiz()">
+                        🔄 RECOMMENCER
+                    </button>
+                    <button class="terminal-btn" onclick="window.location.href='/'">
+                        🏠 MENU PRINCIPAL
+                    </button>
+                </div>
+                
+                <div class="keyboard-hint">
+                    <kbd>R</kbd> Recommencer | <kbd>M</kbd> Menu
+                </div>
+            </div>
+        </div>
     </div>
+
+    <script src="/static/js/quiz-cyber.js"></script>
 </body>
 </html>

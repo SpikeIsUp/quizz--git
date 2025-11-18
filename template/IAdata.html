@@ -3,20 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quizz IA et Data</title>
-    <link rel="stylesheet" href="/static/css/IAdata.css">
+    <title>Quiz IA & Data</title>
+    <link rel="stylesheet" href="/static/CSS/IAdata.css">
 </head>
 <body>
-     <div class="/">
-        <li onclick="window.location.href='/'">Menu</li>
-    </div>
     <div class="terminal-container">
         <div class="terminal-header">
-            <span class="terminal-title">█ CYBER_QUIZ.EXE - IA/DATA PROTOCOL █</span>
+            <span class="terminal-title">█ AI_DATA.EXE - PROTOCOL █</span>
             <div class="terminal-controls">
                 <span class="control">━</span>
                 <span class="control">□</span>
-                <span class="control">✕</span>
+                <span class="control" onclick="window.location.href='/'">✕</span>
             </div>
         </div>
 
@@ -24,21 +21,17 @@
         <div id="loading-screen" class="screen active">
             <div class="ascii-art">
                 <pre>
-    ▄████▄ ▓██   ██▓ ▄▄▄▄   ▓█████  ██▀███  
-   ▒██▀ ▀█  ▒██  ██▒▓█████▄ ▓█   ▀ ▓██ ▒ ██▒
-   ▒▓█    ▄  ▒██ ██░▒██▒ ▄██▒███   ▓██ ░▄█ ▒
-   ▒▓▓▄ ▄██▒ ░ ▐██▓░▒██░█▀  ▒▓█  ▄ ▒██▀▀█▄  
-   ▒ ▓███▀ ░ ░ ██▒▓░░▓█  ▀█▓░▒████▒░██▓ ▒██▒
-   ░ ░▒ ▒  ░  ██▒▒▒ ░▒▓███▀▒░░ ▒░ ░░ ▒▓ ░▒▓░
-     ░  ▒   ▓██ ░▒░ ▒░▒   ░  ░ ░  ░  ░▒ ░ ▒░
-   ░        ▒ ▒ ░░   ░    ░    ░     ░░   ░ 
-   ░ ░      ░ ░      ░         ░  ░   ░     
+    █████╗ ██╗    ██████╗  █████╗ ████████╗ █████╗ 
+   ██╔══██╗██║    ██╔══██╗██╔══██╗╚══██╔══╝██╔══██╗
+   ███████║██║    ██║  ██║███████║   ██║   ███████║
+   ██╔══██║██║    ██║  ██║██╔══██║   ██║   ██╔══██║
+   ██║  ██║██║    ██████╔╝██║  ██║   ██║   ██║  ██║
                 </pre>
             </div>
             <div class="loading-text">
                 <p>> INITIALISATION DU SYSTÈME...</p>
-                <p>> CHARGEMENT DES PROTOCOLES DE SÉCURITÉ...</p>
-                <p>> CONNEXION AU SERVEUR ÉTABLIE</p>
+                <p>> CHARGEMENT DES MODULES IA/DATA...</p>
+                <p>> CONNEXION ÉTABLIE</p>
                 <p class="blink">> APPUYEZ SUR [ENTRÉE] POUR CONTINUER_</p>
             </div>
         </div>
@@ -61,16 +54,20 @@
                         <img id="pretest-media" src="" alt="Test média">
                     </div>
                     <div class="pretest-buttons">
-                        <button class="terminal-btn btn-ai" onclick="answerPreTest(true)">
+                        <button class="terminal-btn btn-ai" data-answer="true">
                             <span class="btn-icon">🤖</span> IA GÉNÉRÉ
                         </button>
-                        <button class="terminal-btn btn-real" onclick="answerPreTest(false)">
+                        <button class="terminal-btn btn-real" data-answer="false">
                             <span class="btn-icon">👤</span> RÉEL / NON-IA
                         </button>
                     </div>
                 </div>
 
                 <div id="pretest-feedback" class="feedback hidden"></div>
+                
+                <div class="keyboard-hint">
+                    Navigation: <kbd>1</kbd> IA | <kbd>2</kbd> Réel | ou <kbd>←</kbd> <kbd>→</kbd> + <kbd>Entrée</kbd>
+                </div>
             </div>
         </div>
 
@@ -91,10 +88,14 @@
                 </div>
 
                 <div id="quiz-feedback" class="feedback hidden"></div>
+                
+                <div class="keyboard-hint">
+                    Navigation: <kbd>1</kbd> <kbd>2</kbd> <kbd>3</kbd> <kbd>4</kbd> ou <kbd>↑</kbd> <kbd>↓</kbd> + <kbd>Entrée</kbd>
+                </div>
             </div>
         </div>
 
-        <!-- ÉCRAN DE RÉSULTATS -->
+        <!-- RÉSULTATS -->
         <div id="results-screen" class="screen">
             <div class="terminal-content">
                 <h1 class="glitch" data-text="◉ RÉSULTATS FINAUX ◉">◉ RÉSULTATS FINAUX ◉</h1>
@@ -124,10 +125,14 @@
                         🏠 MENU PRINCIPAL
                     </button>
                 </div>
+                
+                <div class="keyboard-hint">
+                    <kbd>R</kbd> Recommencer | <kbd>M</kbd> Menu
+                </div>
             </div>
         </div>
     </div>
 
-    <script src="/static/js/quiz.js"></script>
+    <script src="/static/js/IAdata.js"></script>
 </body>
 </html>
